@@ -1,5 +1,10 @@
+import FormComponent from "../../components/FormComponent";
 function HomePage() {
-  return <div>HomePage</div>;
+  return (
+    <>
+      <FormComponent />
+    </>
+  );
 }
 
 export default HomePage;
