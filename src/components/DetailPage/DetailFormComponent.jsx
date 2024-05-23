@@ -1,28 +1,129 @@
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
-function DetailFormComponent() {
+function DetailFormComponent({ accountBook, setAccountBook }) {
+  const params = useParams();
+  const navigate = useNavigate();
+
+  const [inputs, setInputs] = useState({
+    date: "",
+    item: "",
+    amount: "",
+    content: "",
+  });
+
+  useEffect(() => {
+    handleDisplayInputValue();
+  }, [params]);
+
+  const { date, item, amount, content } = inputs;
+
+  const handleFindOne = (param) => {
+    const findItem = accountBook.find(
+      (item) => item.accountId === param.accountId
+    );
+
+    return findItem;
+  };
+
+  const handleDisplayInputValue = () => {
+    const findItem = handleFindOne(params);
+
+    setInputs({
+      date: findItem.date,
+      item: findItem.item,
+      amount: findItem.amount,
+      content: findItem.content,
+    });
+  };
+
+  const handleOnChange = (e) => {
+    const { name, value } = e.target;
+    setInputs({
+      ...inputs,
+      [name]: value,
+    });
+  };
+
+  const handleUpdate = (e) => {
+    e.preventDefault();
+
+    const updatedAccountBook = accountBook.map((i) =>
+      i.accountId === params.accountId
+        ? { ...i, date, item, amount, content }
+        : i
+    );
+
+    setAccountBook(updatedAccountBook);
+    localStorage.setItem("accountBook", JSON.stringify(updatedAccountBook));
+    navigate("/");
+  };
+
+  const handleDelete = () => {
+    const updatedAccountBook = accountBook.filter(
+      (i) => i.accountId !== params.accountId
+    );
+
+    setAccountBook(updatedAccountBook);
+    localStorage.setItem("accountBook", updatedAccountBook);
+    navigate("/");
+  };
+
+  const handleGoBack = () => {
+    navigate("/");
+  };
+
   return (
-    <StDetailFormWrapper>
+    <StDetailFormWrapper onSubmit={handleUpdate}>
       <StDetailInputWrapper>
         <label htmlFor="date">날짜</label>
-        <input type="date" name="date" id="date" />
+        <input
+          type="date"
+          name="date"
+          id="date"
+          value={date}
+          onChange={handleOnChange}
+        />
       </StDetailInputWrapper>
       <StDetailInputWrapper>
         <label htmlFor="item">항목</label>
-        <input type="text" name="item" id="item" />
+        <input
+          type="text"
+          name="item"
+          id="item"
+          value={item}
+          onChange={handleOnChange}
+        />
       </StDetailInputWrapper>
       <StDetailInputWrapper>
         <label htmlFor="amount">금액</label>
-        <input type="text" name="amount" id="amount" />
+        <input
+          type="text"
+          name="amount"
+          id="amount"
+          value={amount}
+          onChange={handleOnChange}
+        />
       </StDetailInputWrapper>
       <StDetailInputWrapper>
         <label htmlFor="content">내용</label>
-        <input type="text" name="content" id="content" />
+        <input
+          type="text"
+          name="content"
+          id="content"
+          value={content}
+          onChange={handleOnChange}
+        />
       </StDetailInputWrapper>
       <StDetailButtonWrapper>
         <button type="submit">수정</button>
-        <button type="submit">삭제</button>
-        <button type="submit">뒤로가기</button>
+        <button type="button" onClick={handleDelete}>
+          삭제
+        </button>
+        <button type="button" onClick={handleGoBack}>
+          뒤로가기
+        </button>
       </StDetailButtonWrapper>
     </StDetailFormWrapper>
   );

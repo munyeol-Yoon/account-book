@@ -1,9 +1,12 @@
 import DetailFormComponent from "../../components/DetailPage/DetailFormComponent";
 
-function DetailPage() {
+function DetailPage({ accountBook, setAccountBook }) {
   return (
     <>
-      <DetailFormComponent />
+      <DetailFormComponent
+        accountBook={accountBook}
+        setAccountBook={setAccountBook}
+      />
     </>
   );
 }
