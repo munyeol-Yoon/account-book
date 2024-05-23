@@ -54,6 +54,10 @@ function DetailFormComponent({ accountBook, setAccountBook }) {
 
   const handleUpdate = (e) => {
     e.preventDefault();
+    if (!date || !item || !amount || !content) {
+      alert("빈칸은 허용되지 않습니다.");
+      return;
+    }
 
     const updatedAccountBook = accountBook.map((i) =>
       i.accountId === params.accountId
