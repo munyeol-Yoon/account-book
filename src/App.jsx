@@ -8,13 +8,19 @@ function App() {
     const localData = localStorage.getItem("accountBook");
     return localData ? JSON.parse(localData) : [];
   });
+  const [selectedMonth, setSelectedMonth] = useState(null);
 
   return (
     <Routes>
       <Route
         path="/"
         element={
-          <HomePage accountBook={accountBook} setAccountBook={setAccountBook} />
+          <HomePage
+            accountBook={accountBook}
+            setAccountBook={setAccountBook}
+            selectedMonth={selectedMonth}
+            setSelectedMonth={setSelectedMonth}
+          />
         }
       />
       <Route

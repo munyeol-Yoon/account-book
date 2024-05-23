@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 function DetailFormComponent({ accountBook, setAccountBook }) {
   const params = useParams();
   const navigate = useNavigate();
+
+  const dateRef = useRef("");
 
   const [inputs, setInputs] = useState({
     date: "",
@@ -16,6 +18,10 @@ function DetailFormComponent({ accountBook, setAccountBook }) {
   useEffect(() => {
     handleDisplayInputValue();
   }, [params]);
+
+  useEffect(() => {
+    dateRef.current.focus();
+  }, []);
 
   const { date, item, amount, content } = inputs;
 
@@ -82,6 +88,7 @@ function DetailFormComponent({ accountBook, setAccountBook }) {
           type="date"
           name="date"
           id="date"
+          ref={dateRef}
           value={date}
           onChange={handleOnChange}
         />

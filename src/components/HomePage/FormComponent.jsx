@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { v4 as uuid } from "uuid";
 
@@ -9,6 +9,12 @@ function FormComponent({ setAccountBook }) {
     amount: "",
     content: "",
   });
+
+  const dateRef = useRef("");
+
+  useEffect(() => {
+    dateRef.current.focus();
+  }, []);
 
   const { date, item, amount, content } = inputs;
 
@@ -54,6 +60,7 @@ function FormComponent({ setAccountBook }) {
             type="date"
             name="date"
             id="date"
+            ref={dateRef}
             value={date}
             onChange={handleOnChange}
           />

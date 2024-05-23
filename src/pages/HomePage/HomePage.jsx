@@ -3,7 +3,12 @@ import FormComponent from "../../components/HomePage/FormComponent";
 import ListComponent from "../../components/HomePage/ListComponent";
 import MonthComponent from "../../components/HomePage/MonthComponent";
 import StatusBarComponent from "../../components/HomePage/StatusBarComponent";
-function HomePage({ accountBook, setAccountBook }) {
+function HomePage({
+  accountBook,
+  setAccountBook,
+  selectedMonth,
+  setSelectedMonth,
+}) {
   const [month, setMonth] = useState("1월");
 
   useEffect(() => {
@@ -20,7 +25,11 @@ function HomePage({ accountBook, setAccountBook }) {
   return (
     <>
       <FormComponent setAccountBook={setAccountBook} />
-      <MonthComponent setMonth={setMonth} />
+      <MonthComponent
+        setMonth={setMonth}
+        selectedMonth={selectedMonth}
+        setSelectedMonth={setSelectedMonth}
+      />
       <StatusBarComponent
         accountBook={accountBook}
         month={month}

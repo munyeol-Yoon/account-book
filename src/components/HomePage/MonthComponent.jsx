@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 
 const months = [
@@ -15,9 +14,7 @@ const months = [
   "11월",
   "12월",
 ];
-function MonthComponent({ setMonth }) {
-  const [selectedMonth, setSelectedMonth] = useState(null);
-
+function MonthComponent({ setMonth, selectedMonth, setSelectedMonth }) {
   const handleMonthOnClick = (e) => {
     const selected = e.target.value;
     setSelectedMonth(selected);
