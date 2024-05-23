@@ -1,5 +1,6 @@
 import { useState } from "react";
 import FormComponent from "../../components/FormComponent";
+import MonthComponent from "../../components/MonthComponent";
 function HomePage() {
   const [accountBook, setAccountBook] = useState([]);
 
@@ -8,6 +9,7 @@ function HomePage() {
   return (
     <>
       <FormComponent setAccountBook={setAccountBook} />
+      <MonthComponent />
     </>
   );
 }

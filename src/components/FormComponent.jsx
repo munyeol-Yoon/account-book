@@ -46,7 +46,7 @@ function FormComponent({ setAccountBook }) {
   };
 
   return (
-    <StFormWrapper>
+    <section>
       <StForm onSubmit={handleOnSubmit}>
         <StInputDiv>
           <label htmlFor="date">날짜</label>
@@ -90,16 +90,9 @@ function FormComponent({ setAccountBook }) {
         </StInputDiv>
         <button type="submit">저장</button>
       </StForm>
-    </StFormWrapper>
+    </section>
   );
 }
-
-const StFormWrapper = styled.section`
-  border: 1px solid black;
-  width: 100%;
-  border-radius: 16px;
-  padding: 20px;
-`;
 
 const StForm = styled.form`
   display: flex;
