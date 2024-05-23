@@ -1,31 +1,12 @@
-import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { v4 as uuid } from "uuid";
+import useFormInputs from "../../hooks/useInputs";
 
 function FormComponent({ setAccountBook }) {
-  const [inputs, setInputs] = useState({
-    date: "",
-    item: "",
-    amount: "",
-    content: "",
-  });
-
-  const dateRef = useRef("");
-
-  useEffect(() => {
-    dateRef.current.focus();
-  }, []);
+  const { inputs, dateRef, handleOnChange, handleResetInputs } =
+    useFormInputs();
 
   const { date, item, amount, content } = inputs;
-
-  const handleOnChange = (e) => {
-    const { name, value } = e.target;
-
-    setInputs({
-      ...inputs,
-      [name]: value,
-    });
-  };
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
@@ -43,12 +24,7 @@ function FormComponent({ setAccountBook }) {
     };
 
     setAccountBook((prevAccountBook) => [...prevAccountBook, newAccountBook]);
-    setInputs({
-      date: "",
-      item: "",
-      amount: "",
-      content: "",
-    });
+    handleResetInputs();
   };
 
   return (
