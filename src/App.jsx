@@ -4,7 +4,10 @@ import DetailPage from "./pages/DetailPage/DetailPage";
 import HomePage from "./pages/HomePage/HomePage";
 
 function App() {
-  const [accountBook, setAccountBook] = useState([]);
+  const [accountBook, setAccountBook] = useState(() => {
+    const localData = localStorage.getItem("accountBook");
+    return localData ? JSON.parse(localData) : [];
+  });
 
   return (
     <Routes>

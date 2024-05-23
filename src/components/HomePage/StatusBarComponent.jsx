@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import fakeData from "../../fakeData.json";
 
 /**
  * 1. 날짜에 맞는 데이터를 가져온다.
@@ -22,15 +21,15 @@ const handleCalculatePercentage = (part, whole) => {
 };
 
 const handleCalculateMonthAmountTotalSum = (data) => {
-  return data.reduce((prev, current) => prev + current.amount, 0);
+  return data.reduce((prev, current) => ~~prev + ~~current.amount, 0);
 };
 
 const handleSortedData = (data) => {
   return data.sort((a, b) => b.amount - a.amount);
 };
 
-function StatusBarComponent({ month, handleGetMonthData }) {
-  const filteredMonthData = handleGetMonthData(fakeData, ~~month[0]);
+function StatusBarComponent({ month, handleGetMonthData, accountBook }) {
+  const filteredMonthData = handleGetMonthData(accountBook, ~~month[0]);
 
   const totalAmount = handleCalculateMonthAmountTotalSum(filteredMonthData);
 

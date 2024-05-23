@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FormComponent from "../../components/HomePage/FormComponent";
 import ListComponent from "../../components/HomePage/ListComponent";
 import MonthComponent from "../../components/HomePage/MonthComponent";
 import StatusBarComponent from "../../components/HomePage/StatusBarComponent";
 function HomePage({ accountBook, setAccountBook }) {
   const [month, setMonth] = useState("1월");
+
+  useEffect(() => {
+    localStorage.setItem("accountBook", JSON.stringify(accountBook));
+  }, [accountBook]);
 
   const handleGetMonthData = (data, month = 2) => {
     return data.filter((element) => {
@@ -18,6 +22,7 @@ function HomePage({ accountBook, setAccountBook }) {
       <FormComponent setAccountBook={setAccountBook} />
       <MonthComponent setMonth={setMonth} />
       <StatusBarComponent
+        accountBook={accountBook}
         month={month}
         handleGetMonthData={handleGetMonthData}
       />
