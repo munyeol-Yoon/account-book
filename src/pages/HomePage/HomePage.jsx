@@ -1,6 +1,7 @@
 import { useState } from "react";
 import FormComponent from "../../components/FormComponent";
 import MonthComponent from "../../components/MonthComponent";
+import StatusBarComponent from "../../components/StatusBarComponent";
 function HomePage() {
   const [accountBook, setAccountBook] = useState([]);
 
@@ -10,6 +11,7 @@ function HomePage() {
     <>
       <FormComponent setAccountBook={setAccountBook} />
       <MonthComponent />
+      <StatusBarComponent />
     </>
   );
 }
