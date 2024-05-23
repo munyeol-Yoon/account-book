@@ -8,7 +8,11 @@ function ListComponent({ accountBook, month, handleGetMonthData }) {
     <section>
       <StListWrapper>
         {filteredMonthData.map((element) => (
-          <Link to={`/${element.accountId}`} key={element.accountId}>
+          <Link
+            to={`/${element.accountId}`}
+            key={element.accountId}
+            style={{ textDecoration: "none" }}
+          >
             <StListCardWrapper key={element.accountId}>
               <StListCardSummary>
                 <span>{element.date}</span>

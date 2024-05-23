@@ -7,8 +7,8 @@ import "./reset.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <GlobalStyle />
     <BrowserRouter>
-      <GlobalStyle />
       <App />
     </BrowserRouter>
   </React.StrictMode>

@@ -141,7 +141,7 @@ function DetailFormComponent({ accountBook, setAccountBook }) {
 }
 
 const StDetailFormWrapper = styled.form`
-  border: 1px solid black;
+  background-color: white;
   max-width: 800px;
   width: 100%;
   margin: 0 auto;
