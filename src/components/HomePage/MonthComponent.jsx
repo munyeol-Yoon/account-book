@@ -24,8 +24,6 @@ function MonthComponent({ setMonth }) {
     setMonth(selected);
   };
 
-  console.log("MonthComponent 렌더링");
-
   return (
     <section>
       <StMonthWrapper>

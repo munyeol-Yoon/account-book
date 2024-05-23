@@ -17,7 +17,7 @@ function ListComponent({ month, handleGetMonthData }) {
   }, [accountBook]);
 
   const filteredMonthData = handleGetMonthData(accountBook, ~~month[0]);
-  console.log("ListComponent 렌더링");
+
   const sortedData = handleSortedDateAscData(filteredMonthData);
 
   return (

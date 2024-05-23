@@ -37,8 +37,6 @@ function StatusBarComponent({ month, handleGetMonthData }) {
 
   const sortedData = handleSortedAmountDescData(filteredMonthData);
 
-  console.log("StatusBar 렌더링");
-
   return (
     <section>
       <StStatusFontTitle>

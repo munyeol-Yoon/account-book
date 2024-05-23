@@ -8,7 +8,6 @@ function FormComponent() {
   const { setAccountBook } = useAccountBook();
   const { inputs, dateRef, handleOnChange, handleResetInputs } =
     useFormInputs();
-  console.log("FormComponent 렌더링");
 
   const { date, item, amount, content } = inputs;
 

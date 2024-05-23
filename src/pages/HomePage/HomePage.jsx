@@ -5,7 +5,6 @@ import MonthComponent from "../../components/HomePage/MonthComponent";
 import StatusBarComponent from "../../components/HomePage/StatusBarComponent";
 
 function HomePage() {
-  console.log("HomePage 렌더링");
   const [month, setMonth] = useState("1월");
 
   const handleGetMonthData = (data, month = 2) => {
