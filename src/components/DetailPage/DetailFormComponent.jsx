@@ -1,9 +1,11 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
+import { useAccountBook } from "../../context/AccountBookContext";
 import useFormInputs from "../../hooks/useInputs";
 
-function DetailFormComponent({ accountBook, setAccountBook }) {
+function DetailFormComponent() {
+  const { accountBook, setAccountBook } = useAccountBook();
   const { inputs, dateRef, handleOnChange, setInputs } = useFormInputs();
   const params = useParams();
   const navigate = useNavigate();

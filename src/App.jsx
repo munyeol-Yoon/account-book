@@ -1,38 +1,22 @@
-import { useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
+import {
+  AccountBookProvider,
+  MonthProvider,
+} from "./context/AccountBookContext";
 import DetailPage from "./pages/DetailPage/DetailPage";
 import HomePage from "./pages/HomePage/HomePage";
+import router from "./routes/router";
 
 function App() {
-  const [accountBook, setAccountBook] = useState(() => {
-    const localData = localStorage.getItem("accountBook");
-    return localData ? JSON.parse(localData) : [];
-  });
-  const [selectedMonth, setSelectedMonth] = useState(null);
-
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <HomePage
-            accountBook={accountBook}
-            setAccountBook={setAccountBook}
-            selectedMonth={selectedMonth}
-            setSelectedMonth={setSelectedMonth}
-          />
-        }
-      />
-      <Route
-        path="/:accountId"
-        element={
-          <DetailPage
-            accountBook={accountBook}
-            setAccountBook={setAccountBook}
-          />
-        }
-      />
-    </Routes>
+    <AccountBookProvider>
+      <MonthProvider>
+        <RouterProvider router={router}>
+          <HomePage />
+          <DetailPage />
+        </RouterProvider>
+      </MonthProvider>
+    </AccountBookProvider>
   );
 }
 

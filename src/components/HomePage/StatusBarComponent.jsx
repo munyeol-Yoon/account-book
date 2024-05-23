@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useAccountBook } from "../../context/AccountBookContext";
 
 /**
  * 1. 날짜에 맞는 데이터를 가져온다.
@@ -28,12 +29,15 @@ const handleSortedAmountDescData = (data) => {
   return data.sort((a, b) => b.amount - a.amount);
 };
 
-function StatusBarComponent({ month, handleGetMonthData, accountBook }) {
+function StatusBarComponent({ month, handleGetMonthData }) {
+  const { accountBook } = useAccountBook();
   const filteredMonthData = handleGetMonthData(accountBook, ~~month[0]);
 
   const totalAmount = handleCalculateMonthAmountTotalSum(filteredMonthData);
 
   const sortedData = handleSortedAmountDescData(filteredMonthData);
+
+  console.log("StatusBar 렌더링");
 
   return (
     <section>

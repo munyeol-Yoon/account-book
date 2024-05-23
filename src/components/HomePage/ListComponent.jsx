@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useAccountBook } from "../../context/AccountBookContext";
 
 const handleSortedDateAscData = (data) => {
   return data.sort(
@@ -7,9 +9,15 @@ const handleSortedDateAscData = (data) => {
   );
 };
 
-function ListComponent({ accountBook, month, handleGetMonthData }) {
-  const filteredMonthData = handleGetMonthData(accountBook, ~~month[0]);
+function ListComponent({ month, handleGetMonthData }) {
+  const { accountBook } = useAccountBook();
 
+  useEffect(() => {
+    localStorage.setItem("accountBook", JSON.stringify(accountBook));
+  }, [accountBook]);
+
+  const filteredMonthData = handleGetMonthData(accountBook, ~~month[0]);
+  console.log("ListComponent 렌더링");
   const sortedData = handleSortedDateAscData(filteredMonthData);
 
   return (

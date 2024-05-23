@@ -1,10 +1,14 @@
+import React from "react";
 import styled from "styled-components";
 import { v4 as uuid } from "uuid";
+import { useAccountBook } from "../../context/AccountBookContext";
 import useFormInputs from "../../hooks/useInputs";
 
-function FormComponent({ setAccountBook }) {
+function FormComponent() {
+  const { setAccountBook } = useAccountBook();
   const { inputs, dateRef, handleOnChange, handleResetInputs } =
     useFormInputs();
+  console.log("FormComponent 렌더링");
 
   const { date, item, amount, content } = inputs;
 
@@ -116,4 +120,4 @@ const StButton = styled.button`
   cursor: pointer;
 `;
 
-export default FormComponent;
+export default React.memo(FormComponent);

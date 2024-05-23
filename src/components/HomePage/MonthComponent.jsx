@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useMonth } from "../../context/AccountBookContext";
 
 const months = [
   "1월",
@@ -14,12 +15,16 @@ const months = [
   "11월",
   "12월",
 ];
-function MonthComponent({ setMonth, selectedMonth, setSelectedMonth }) {
+function MonthComponent({ setMonth }) {
+  const { selectedMonth, setSelectedMonth } = useMonth();
+
   const handleMonthOnClick = (e) => {
     const selected = e.target.value;
     setSelectedMonth(selected);
     setMonth(selected);
   };
+
+  console.log("MonthComponent 렌더링");
 
   return (
     <section>
