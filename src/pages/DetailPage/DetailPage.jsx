@@ -1,5 +1,11 @@
+import DetailFormComponent from "../../components/DetailPage/DetailFormComponent";
+
 function DetailPage() {
-  return <div>DetailPage</div>;
+  return (
+    <>
+      <DetailFormComponent />
+    </>
+  );
 }
 
 export default DetailPage;

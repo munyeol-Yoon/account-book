@@ -1,8 +1,8 @@
 import { useState } from "react";
-import FormComponent from "../../components/FormComponent";
-import ListComponent from "../../components/ListComponent";
-import MonthComponent from "../../components/MonthComponent";
-import StatusBarComponent from "../../components/StatusBarComponent";
+import FormComponent from "../../components/HomePage/FormComponent";
+import ListComponent from "../../components/HomePage/ListComponent";
+import MonthComponent from "../../components/HomePage/MonthComponent";
+import StatusBarComponent from "../../components/HomePage/StatusBarComponent";
 function HomePage({ accountBook, setAccountBook }) {
   const [month, setMonth] = useState("1월");
 

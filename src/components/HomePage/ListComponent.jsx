@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import fakeData from "../fakeData.json";
+import fakeData from "../../fakeData.json";
 
 function ListComponent({ accountBook, month, handleGetMonthData }) {
   const filteredMonthData = handleGetMonthData(fakeData, ~~month[0]);

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import fakeData from "../fakeData.json";
+import fakeData from "../../fakeData.json";
 
 /**
  * 1. 날짜에 맞는 데이터를 가져온다.
