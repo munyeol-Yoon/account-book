@@ -36,17 +36,18 @@ const handleSortedData = (data) => {
   return data.sort((a, b) => b.amount - a.amount);
 };
 
-function StatusBarComponent() {
-  const filteredMonthData = handleGetMonthData(fakeData);
-  // console.log(filteredMonthData);
+function StatusBarComponent({ month }) {
+  const filteredMonthData = handleGetMonthData(fakeData, ~~month[0]);
+
   const totalAmount = handleCalculateMonthAmountTotalSum(filteredMonthData);
-  // console.log(totalAmount);
-  // console.log(handleCalculatePercentage(1055000, totalAmount));
+
   const sortedData = handleSortedData(filteredMonthData);
 
   return (
     <section>
-      <StStatusFontTitle>00월 총 지출 : {totalAmount} 원</StStatusFontTitle>
+      <StStatusFontTitle>
+        {month} 총 지출 : {totalAmount} 원
+      </StStatusFontTitle>
       <StStatusBarWrapper>
         {sortedData.map((element, index) => (
           <StStatusBarElement

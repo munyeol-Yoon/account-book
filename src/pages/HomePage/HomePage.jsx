@@ -4,14 +4,13 @@ import MonthComponent from "../../components/MonthComponent";
 import StatusBarComponent from "../../components/StatusBarComponent";
 function HomePage() {
   const [accountBook, setAccountBook] = useState([]);
-
-  console.log(accountBook);
+  const [month, setMonth] = useState("1월");
 
   return (
     <>
       <FormComponent setAccountBook={setAccountBook} />
-      <MonthComponent />
-      <StatusBarComponent />
+      <MonthComponent setMonth={setMonth} />
+      <StatusBarComponent month={month} />
     </>
   );
 }

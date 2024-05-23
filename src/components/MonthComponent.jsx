@@ -1,26 +1,31 @@
 import styled from "styled-components";
 
-function MonthComponent() {
-  const months = [
-    "1월",
-    "2월",
-    "3월",
-    "4월",
-    "5월",
-    "6월",
-    "7월",
-    "8월",
-    "9월",
-    "10월",
-    "11월",
-    "12월",
-  ];
+const months = [
+  "1월",
+  "2월",
+  "3월",
+  "4월",
+  "5월",
+  "6월",
+  "7월",
+  "8월",
+  "9월",
+  "10월",
+  "11월",
+  "12월",
+];
+function MonthComponent({ setMonth }) {
+  const handleMonthOnClick = (e) => {
+    setMonth(e.target.value);
+  };
 
   return (
     <section>
       <StMonthWrapper>
         {months.map((month, index) => (
-          <StMonthButton key={index}>{month}</StMonthButton>
+          <StMonthButton key={index} onClick={handleMonthOnClick} value={month}>
+            {month}
+          </StMonthButton>
         ))}
       </StMonthWrapper>
     </section>
