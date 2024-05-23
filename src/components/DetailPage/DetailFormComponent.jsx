@@ -71,6 +71,9 @@ function DetailFormComponent({ accountBook, setAccountBook }) {
   };
 
   const handleDelete = () => {
+    const isDelete = confirm("정말로 이 지출 할목을 삭제하시겠습니까?");
+    if (!isDelete) return;
+
     const updatedAccountBook = accountBook.filter(
       (i) => i.accountId !== params.accountId
     );
