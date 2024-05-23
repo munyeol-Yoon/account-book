@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import fakeData from "../fakeData.json";
 
@@ -8,13 +9,15 @@ function ListComponent({ accountBook, month, handleGetMonthData }) {
     <section>
       <StListWrapper>
         {filteredMonthData.map((element) => (
-          <StListCardWrapper key={element.accountId}>
-            <StListCardSummary>
-              <span>{element.date}</span>
-              <span>{element.item + "-" + element.description}</span>
-            </StListCardSummary>
-            <span>{element.amount}</span>
-          </StListCardWrapper>
+          <Link to={`/${element.accountId}`} key={element.accountId}>
+            <StListCardWrapper key={element.accountId}>
+              <StListCardSummary>
+                <span>{element.date}</span>
+                <span>{element.item + "-" + element.description}</span>
+              </StListCardSummary>
+              <span>{element.amount}</span>
+            </StListCardWrapper>
+          </Link>
         ))}
       </StListWrapper>
     </section>

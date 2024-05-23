@@ -3,8 +3,7 @@ import FormComponent from "../../components/FormComponent";
 import ListComponent from "../../components/ListComponent";
 import MonthComponent from "../../components/MonthComponent";
 import StatusBarComponent from "../../components/StatusBarComponent";
-function HomePage() {
-  const [accountBook, setAccountBook] = useState([]);
+function HomePage({ accountBook, setAccountBook }) {
   const [month, setMonth] = useState("1월");
 
   const handleGetMonthData = (data, month = 2) => {
