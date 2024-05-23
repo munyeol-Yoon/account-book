@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import fakeData from "../fakeData.json";
 
-function ListComponent({ accountBook }) {
+function ListComponent({ accountBook, month, handleGetMonthData }) {
+  const filteredMonthData = handleGetMonthData(fakeData, ~~month[0]);
+
   return (
     <section>
       <StListWrapper>
-        {fakeData.map((element) => (
+        {filteredMonthData.map((element) => (
           <StListCardWrapper key={element.accountId}>
             <StListCardSummary>
               <span>{element.date}</span>

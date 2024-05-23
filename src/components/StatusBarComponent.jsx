@@ -17,13 +17,6 @@ const colorPalette = [
   "#6499b0",
 ];
 
-const handleGetMonthData = (data, month = 2) => {
-  return data.filter((element) => {
-    const entryMonth = new Date(element.date).getMonth() + 1;
-    return entryMonth === month;
-  });
-};
-
 const handleCalculatePercentage = (part, whole) => {
   return ((part / whole) * 100).toFixed(2) + "%";
 };
@@ -36,7 +29,7 @@ const handleSortedData = (data) => {
   return data.sort((a, b) => b.amount - a.amount);
 };
 
-function StatusBarComponent({ month }) {
+function StatusBarComponent({ month, handleGetMonthData }) {
   const filteredMonthData = handleGetMonthData(fakeData, ~~month[0]);
 
   const totalAmount = handleCalculateMonthAmountTotalSum(filteredMonthData);
