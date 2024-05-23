@@ -24,7 +24,7 @@ const handleCalculateMonthAmountTotalSum = (data) => {
   return data.reduce((prev, current) => ~~prev + ~~current.amount, 0);
 };
 
-const handleSortedData = (data) => {
+const handleSortedAmountDescData = (data) => {
   return data.sort((a, b) => b.amount - a.amount);
 };
 
@@ -33,7 +33,7 @@ function StatusBarComponent({ month, handleGetMonthData, accountBook }) {
 
   const totalAmount = handleCalculateMonthAmountTotalSum(filteredMonthData);
 
-  const sortedData = handleSortedData(filteredMonthData);
+  const sortedData = handleSortedAmountDescData(filteredMonthData);
 
   return (
     <section>

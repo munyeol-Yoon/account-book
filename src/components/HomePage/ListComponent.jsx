@@ -1,13 +1,21 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+const handleSortedDateAscData = (data) => {
+  return data.sort(
+    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+  );
+};
+
 function ListComponent({ accountBook, month, handleGetMonthData }) {
   const filteredMonthData = handleGetMonthData(accountBook, ~~month[0]);
+
+  const sortedData = handleSortedDateAscData(filteredMonthData);
 
   return (
     <section>
       <StListWrapper>
-        {filteredMonthData.map((element) => (
+        {sortedData.map((element) => (
           <Link
             to={`/${element.accountId}`}
             key={element.accountId}
