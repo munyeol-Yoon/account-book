@@ -128,13 +128,13 @@ function DetailFormComponent({ accountBook, setAccountBook }) {
         />
       </StDetailInputWrapper>
       <StDetailButtonWrapper>
-        <button type="submit">수정</button>
-        <button type="button" onClick={handleDelete}>
+        <StDetailUpdateButton type="submit">수정</StDetailUpdateButton>
+        <StDetailDeleteButton type="button" onClick={handleDelete}>
           삭제
-        </button>
-        <button type="button" onClick={handleGoBack}>
+        </StDetailDeleteButton>
+        <StDetailGoBackButton type="button" onClick={handleGoBack}>
           뒤로가기
-        </button>
+        </StDetailGoBackButton>
       </StDetailButtonWrapper>
     </StDetailFormWrapper>
   );
@@ -158,6 +158,7 @@ const StDetailInputWrapper = styled.div`
     margin-bottom: 5px;
     font-size: 14px;
     color: rgb(51, 51, 51);
+    text-align: left;
   }
 
   & input {
@@ -171,6 +172,33 @@ const StDetailInputWrapper = styled.div`
 const StDetailButtonWrapper = styled.div`
   display: flex;
   gap: 10px;
+`;
+
+const StDetailUpdateButton = styled.button`
+  padding: 10px 20px;
+  background-color: rgb(0, 123, 255);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+`;
+
+const StDetailDeleteButton = styled.button`
+  padding: 10px 20px;
+  background-color: rgb(255, 77, 77);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+`;
+
+const StDetailGoBackButton = styled.button`
+  padding: 10px 20px;
+  background-color: rgb(108, 117, 125);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 `;
 
 export default DetailFormComponent;
