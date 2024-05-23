@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 const months = [
@@ -15,15 +16,24 @@ const months = [
   "12월",
 ];
 function MonthComponent({ setMonth }) {
+  const [selectedMonth, setSelectedMonth] = useState(null);
+
   const handleMonthOnClick = (e) => {
-    setMonth(e.target.value);
+    const selected = e.target.value;
+    setSelectedMonth(selected);
+    setMonth(selected);
   };
 
   return (
     <section>
       <StMonthWrapper>
         {months.map((month, index) => (
-          <StMonthButton key={index} onClick={handleMonthOnClick} value={month}>
+          <StMonthButton
+            key={index}
+            onClick={handleMonthOnClick}
+            value={month}
+            selected={selectedMonth === month}
+          >
             {month}
           </StMonthButton>
         ))}
@@ -53,11 +63,11 @@ const StMonthButton = styled.button`
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
-  color: black;
   border-radius: 10px;
   border: none;
   cursor: pointer;
-  background-color: #f6f7fa;
+  background-color: ${(props) => (props.selected ? "#2ec4b6" : "#f6f7fa")};
+  color: ${(props) => (props.selected ? "#fff" : "black")};
 
   &:hover {
     color: #fff;
