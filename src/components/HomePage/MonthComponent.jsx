@@ -32,7 +32,7 @@ function MonthComponent({ setMonth }) {
         {months.map((month, index) => (
           <StMonthButton
             key={index}
-            onClick={handleMonthOnClick(month)}
+            onClick={() => handleMonthOnClick(month)}
             value={month}
             selected={selectedMonth === month}
           >

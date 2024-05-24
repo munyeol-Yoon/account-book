@@ -4,17 +4,12 @@ import HomePage from "../pages/HomePage/HomePage";
 
 const router = createBrowserRouter([
   {
-    element: <div>error</div>,
-    children: [
-      {
-        path: "/",
-        element: <HomePage />,
-      },
-      {
-        path: "/:accountId",
-        element: <DetailPage />,
-      },
-    ],
+    path: "/",
+    element: <HomePage />,
+  },
+  {
+    path: "/:accountId",
+    element: <DetailPage />,
   },
 ]);
 
