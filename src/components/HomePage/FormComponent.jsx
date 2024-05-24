@@ -6,7 +6,6 @@ import useFormInputs from "../../hooks/useInputs";
 import { addAccountEntry } from "../../redux/slices/accountBook.slice";
 
 function FormComponent() {
-  // const { setAccountBook } = useAccountBook();
   const dispatch = useDispatch();
   const { inputs, dateRef, handleOnChange, handleResetInputs } =
     useFormInputs();
@@ -28,7 +27,6 @@ function FormComponent() {
       content,
     };
 
-    // setAccountBook((prevAccountBook) => [...prevAccountBook, newAccountBook]);
     dispatch(addAccountEntry(newAccountBook));
     handleResetInputs();
   };

@@ -17,7 +17,6 @@ const months = [
   "12월",
 ];
 function MonthComponent({ setMonth }) {
-  // const { selectedMonth, setSelectedMonth } = useMonth();
   const dispatch = useDispatch();
   const selectedMonth = useSelector((state) => state.month.selectedMonth);
 

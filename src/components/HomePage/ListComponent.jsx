@@ -9,7 +9,6 @@ const handleSortedDateAscData = (data) => {
 };
 
 function ListComponent({ month, handleGetMonthData }) {
-  // const { accountBook } = useAccountBook();
   const accountBook = useSelector((state) => state.accountBook);
 
   const filteredMonthData = handleGetMonthData(

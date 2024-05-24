@@ -1,38 +1,48 @@
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
-import { useAccountBook } from "../../context/AccountBookContext";
 import useFormInputs from "../../hooks/useInputs";
+import {
+  deleteAccount,
+  updateAccount,
+} from "../../redux/slices/accountBook.slice";
 
 function DetailFormComponent() {
-  const { accountBook, setAccountBook } = useAccountBook();
+  const accountBook = useSelector((state) => state.accountBook.accountBook);
+  const dispatch = useDispatch();
+
   const { inputs, dateRef, handleOnChange, setInputs } = useFormInputs();
   const params = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
     handleDisplayInputValue();
-  }, [params]);
+  }, [params, accountBook]);
 
   const { date, item, amount, content } = inputs;
 
   const handleFindOne = (param) => {
-    const findItem = accountBook.find(
-      (item) => item.accountId === param.accountId
-    );
+    if (Array.isArray(accountBook)) {
+      return accountBook.find(
+        (item) => item.accountId.toString() === param.accountId.toString()
+      );
+    }
+    console.log("2" + accountBook);
 
-    return findItem;
+    return null;
   };
 
   const handleDisplayInputValue = () => {
     const findItem = handleFindOne(params);
-
-    setInputs({
-      date: findItem.date,
-      item: findItem.item,
-      amount: findItem.amount,
-      content: findItem.content,
-    });
+    if (findItem) {
+      setInputs({
+        date: findItem.date,
+        item: findItem.item,
+        amount: findItem.amount,
+        content: findItem.content,
+      });
+    }
   };
 
   const handleUpdate = (e) => {
@@ -42,14 +52,15 @@ function DetailFormComponent() {
       return;
     }
 
-    const updatedAccountBook = accountBook.map((i) =>
-      i.accountId === params.accountId
-        ? { ...i, date, item, amount, content }
-        : i
+    dispatch(
+      updateAccount({
+        accountId: params.accountId,
+        date,
+        item,
+        amount,
+        content,
+      })
     );
-
-    setAccountBook(updatedAccountBook);
-    localStorage.setItem("accountBook", JSON.stringify(updatedAccountBook));
     navigate("/");
   };
 
@@ -57,12 +68,7 @@ function DetailFormComponent() {
     const isDelete = confirm("정말로 이 지출 할목을 삭제하시겠습니까?");
     if (!isDelete) return;
 
-    const updatedAccountBook = accountBook.filter(
-      (i) => i.accountId !== params.accountId
-    );
-
-    setAccountBook(updatedAccountBook);
-    localStorage.setItem("accountBook", updatedAccountBook);
+    dispatch(deleteAccount(params.accountId));
     navigate("/");
   };
 

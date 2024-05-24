@@ -30,7 +30,6 @@ const handleSortedAmountDescData = (data) => {
 };
 
 function StatusBarComponent({ month, handleGetMonthData }) {
-  // const { accountBook } = useAccountBook();
   const accountBook = useSelector((state) => state.accountBook);
 
   const filteredMonthData = handleGetMonthData(
