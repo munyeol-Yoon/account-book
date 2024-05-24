@@ -1,7 +1,6 @@
-import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { useAccountBook } from "../../context/AccountBookContext";
 
 const handleSortedDateAscData = (data) => {
   return data.sort(
@@ -10,13 +9,13 @@ const handleSortedDateAscData = (data) => {
 };
 
 function ListComponent({ month, handleGetMonthData }) {
-  const { accountBook } = useAccountBook();
+  // const { accountBook } = useAccountBook();
+  const accountBook = useSelector((state) => state.accountBook);
 
-  useEffect(() => {
-    localStorage.setItem("accountBook", JSON.stringify(accountBook));
-  }, [accountBook]);
-
-  const filteredMonthData = handleGetMonthData(accountBook, ~~month[0]);
+  const filteredMonthData = handleGetMonthData(
+    accountBook.accountBook,
+    ~~month[0]
+  );
 
   const sortedData = handleSortedDateAscData(filteredMonthData);
 

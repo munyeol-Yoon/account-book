@@ -1,5 +1,5 @@
+import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { useAccountBook } from "../../context/AccountBookContext";
 
 /**
  * 1. 날짜에 맞는 데이터를 가져온다.
@@ -30,8 +30,13 @@ const handleSortedAmountDescData = (data) => {
 };
 
 function StatusBarComponent({ month, handleGetMonthData }) {
-  const { accountBook } = useAccountBook();
-  const filteredMonthData = handleGetMonthData(accountBook, ~~month[0]);
+  // const { accountBook } = useAccountBook();
+  const accountBook = useSelector((state) => state.accountBook);
+
+  const filteredMonthData = handleGetMonthData(
+    accountBook.accountBook,
+    ~~month[0]
+  );
 
   const totalAmount = handleCalculateMonthAmountTotalSum(filteredMonthData);
 

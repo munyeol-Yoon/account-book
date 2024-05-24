@@ -1,5 +1,6 @@
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { useMonth } from "../../context/AccountBookContext";
+import { setSelectedMonth } from "../../redux/slices/month.slice";
 
 const months = [
   "1월",
@@ -16,11 +17,12 @@ const months = [
   "12월",
 ];
 function MonthComponent({ setMonth }) {
-  const { selectedMonth, setSelectedMonth } = useMonth();
+  // const { selectedMonth, setSelectedMonth } = useMonth();
+  const dispatch = useDispatch();
+  const selectedMonth = useSelector((state) => state.month.selectedMonth);
 
-  const handleMonthOnClick = (e) => {
-    const selected = e.target.value;
-    setSelectedMonth(selected);
+  const handleMonthOnClick = (selected) => {
+    dispatch(setSelectedMonth(selected));
     setMonth(selected);
   };
 
@@ -30,7 +32,7 @@ function MonthComponent({ setMonth }) {
         {months.map((month, index) => (
           <StMonthButton
             key={index}
-            onClick={handleMonthOnClick}
+            onClick={handleMonthOnClick(month)}
             value={month}
             selected={selectedMonth === month}
           >
